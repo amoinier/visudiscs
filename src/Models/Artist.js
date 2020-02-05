@@ -26,6 +26,19 @@ class Artist extends Model {
       }
     }
   }
+
+  static get relationMappings () {
+    return {
+      releases: {
+        relation: Model.HasManyRelation,
+        modelClass: __dirname + '/Release.js',
+        join: {
+          from: 'artists.discogs_id',
+          to: 'releases.artist_id'
+        }
+      }
+    }
+  }
 }
 
 module.exports = Artist

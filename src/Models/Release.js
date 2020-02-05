@@ -61,7 +61,7 @@ class Release extends Model {
             from: 'release_genres.release_id',
             to: 'release_genres.genre_id'
           },
-          to: 'genre.id'
+          to: 'genres.id'
         }
       },
 
@@ -74,7 +74,7 @@ class Release extends Model {
             from: 'release_styles.release_id',
             to: 'release_styles.style_id'
           },
-          to: 'style.id'
+          to: 'styles.id'
         }
       }
     }

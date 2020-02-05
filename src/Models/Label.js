@@ -26,6 +26,19 @@ class Label extends Model {
       }
     }
   }
+
+  static get relationMappings () {
+    return {
+      releases: {
+        relation: Model.HasManyRelation,
+        modelClass: __dirname + '/Release.js',
+        join: {
+          from: 'labels.discogs_id',
+          to: 'releases.label_id'
+        }
+      }
+    }
+  }
 }
 
 module.exports = Label

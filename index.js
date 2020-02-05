@@ -6,8 +6,11 @@ const favicon = require('serve-favicon')
 
 const api = require('./src/api')
 const response = require('./src/utils/response')
+const createDatabase = require('./src/utils/createDatabase')
 
 dotenv.config()
+
+createDatabase().catch(e => {})
 
 app.use(require('body-parser').json({ limit: '1mb' }))
 app.use(cors())
