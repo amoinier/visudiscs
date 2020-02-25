@@ -1,4 +1,4 @@
-const Model = require('./Model')
+import Model from './Model'
 
 class ReleaseGenre extends Model {
   static get tableName () {
@@ -22,4 +22,4 @@ class ReleaseGenre extends Model {
   }
 }
 
-module.exports = ReleaseGenre
+export default ReleaseGenre

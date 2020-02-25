@@ -1,4 +1,4 @@
-module.exports = (req, res) => {
+const response = (req: any, res: any) => {
   const { status = 200, message = '', datas = {} } = res && res.resp ? res.resp : {}
 
   res.status(status)
@@ -7,3 +7,5 @@ module.exports = (req, res) => {
     datas
   })
 }
+
+export default response

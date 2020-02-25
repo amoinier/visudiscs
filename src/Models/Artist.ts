@@ -1,4 +1,4 @@
-const Model = require('./Model')
+import Model from './Model'
 
 class Artist extends Model {
   static get tableName () {
@@ -41,4 +41,4 @@ class Artist extends Model {
   }
 }
 
-module.exports = Artist
+export default Artist

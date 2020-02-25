@@ -10,4 +10,4 @@ const createDatabase = async () => {
   await knex.destroy()
 }
 
-module.exports = createDatabase
+export default createDatabase

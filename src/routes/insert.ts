@@ -1,4 +1,4 @@
-const Router = require('express').Router()
+import express, {NextFunction, Request, Response} from 'express'
 const axios = require('axios')
 
 const Artists = require('../Models/Artist')
@@ -7,19 +7,21 @@ const Releases = require('../Models/Release')
 
 const response = require('../utils/response')
 
-Router.get('/add/:user', async (req, res) => {
+const Router = express.Router()
+
+Router.get('/add/:user', async (req: Request, res: Response) => {
   const { user } = req.params
   const url = `https://api.discogs.com/users/${user}/collection/folders/0/releases?per_page=1000&token=${process.env.DISCOGS_TOKEN}`
 
-  const result = await axios.get(url).catch(e => {
+  const result = await axios.get(url).catch((e: Error) => {
     console.log(e)
   })
 
-  const arrayArtist = []
-  const arrayLabel = []
-  const arrayRelease = []
+  const arrayArtist: any[] = []
+  const arrayLabel: any[] = []
+  const arrayRelease: any[] = []
 
-  result.data.releases.map((release) => {
+  result.data.releases.map((release: any) => {
     if (!arrayArtist.find(artist => parseInt(artist.discogs_id) === parseInt(release.basic_information.artists[0].id))) {
       arrayArtist.push({
         name: release.basic_information.artists[0].name,
@@ -44,21 +46,22 @@ Router.get('/add/:user', async (req, res) => {
     }
   })
 
-  await Artists.query().upsertGraph(arrayArtist, { allowRefs: true, relate: true, insertMissing: true }).catch(e => console.log(e))
-  await Labels.query().upsertGraph(arrayLabel, { allowRefs: true, relate: true, insertMissing: true }).catch(e => console.log(e))
-  await Releases.query().upsertGraph(arrayRelease, { allowRefs: true, relate: true, insertMissing: true }).catch(e => console.log(e))
+  await Artists.query().upsertGraph(arrayArtist, { allowRefs: true, relate: true, insertMissing: true }).catch((e: Error) => console.log(e))
+  await Labels.query().upsertGraph(arrayLabel, { allowRefs: true, relate: true, insertMissing: true }).catch((e: Error) => console.log(e))
+  await Releases.query().upsertGraph(arrayRelease, { allowRefs: true, relate: true, insertMissing: true }).catch((e: Error) => console.log(e))
 
   return response(req, res)
 })
 
-Router.get('/get', async (req, res) => {
+Router.get('/get', async (req: any, res: any) => {
   // const release = await Releases.query().where('title', 'like', '%Jeannine%').withGraphJoined('artist').withGraphJoined('label').withGraphFetched('genres')
-  const release = await Labels
+  const release = await Releases
     .query()
-    .withGraphFetched('releases')
-    .modifyGraph('releases', builder => { builder.select('title') })
-    .withGraphFetched('releases.artist')
-    .modifyGraph('releases.artist', builder => { builder.select('name') })
+    .select('title')
+    .withGraphFetched('artist')
+    .modifyGraph('artist', (builder: any) => { builder.select('name') })
+    .withGraphJoined('label').modifyGraph('label', (builder: any) => { builder.select('name') })
+    .withGraphJoined('genres')
 
   res.resp.datas = release
 

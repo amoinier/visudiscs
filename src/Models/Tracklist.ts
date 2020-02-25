@@ -1,4 +1,4 @@
-const Model = require('./Model')
+import Model from './Model'
 
 class Tracklist extends Model {
   static get tableName () {
@@ -43,4 +43,4 @@ class Tracklist extends Model {
   // }
 }
 
-module.exports = Tracklist
+export default Tracklist

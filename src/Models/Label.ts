@@ -1,4 +1,4 @@
-const Model = require('./Model')
+import Model from './Model'
 
 class Label extends Model {
   static get tableName () {
@@ -41,4 +41,4 @@ class Label extends Model {
   }
 }
 
-module.exports = Label
+export default Label

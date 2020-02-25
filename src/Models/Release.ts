@@ -1,4 +1,5 @@
-const Model = require('./Model')
+import path from 'path'
+import Model from './Model'
 
 class Release extends Model {
   static get tableName () {
@@ -36,7 +37,7 @@ class Release extends Model {
     return {
       artist: {
         relation: Model.BelongsToOneRelation,
-        modelClass: __dirname + '/Artist.js',
+        modelClass: path.join(__dirname, '/Artist.js'),
         join: {
           from: 'releases.artist_id',
           to: 'artists.discogs_id'
@@ -45,7 +46,7 @@ class Release extends Model {
 
       label: {
         relation: Model.BelongsToOneRelation,
-        modelClass: __dirname + '/Label.js',
+        modelClass: path.join(__dirname, '/Label.js'),
         join: {
           from: 'releases.label_id',
           to: 'labels.discogs_id'
@@ -54,7 +55,7 @@ class Release extends Model {
 
       genres: {
         relation: Model.ManyToManyRelation,
-        modelClass: __dirname + '/Genre.js',
+        modelClass: path.join(__dirname, '/Genre.js'),
         join: {
           from: 'releases.discogs_id',
           through: {
@@ -67,7 +68,7 @@ class Release extends Model {
 
       style: {
         relation: Model.ManyToManyRelation,
-        modelClass: __dirname + '/Style.js',
+        modelClass: path.join(__dirname, '/Style.js'),
         join: {
           from: 'releases.discogs_id',
           through: {
@@ -81,4 +82,4 @@ class Release extends Model {
   }
 }
 
-module.exports = Release
+export default Release

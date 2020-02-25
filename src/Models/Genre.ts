@@ -1,8 +1,8 @@
-const Model = require('./Model')
+import Model from './Model'
 
-class ReleaseStyle extends Model {
+class Genre extends Model {
   static get tableName () {
-    return 'release_styles'
+    return 'genres'
   }
 
   static get idColumn () {
@@ -15,11 +15,11 @@ class ReleaseStyle extends Model {
       required: ['name'],
 
       properties: {
-        release_id: { type: 'integer' },
-        style_id: { type: 'integer' }
+        id: { type: 'integer' },
+        name: { type: 'string', minLength: 1, maxLength: 255 }
       }
     }
   }
 }
 
-module.exports = ReleaseStyle
+export default Genre

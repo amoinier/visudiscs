@@ -1,0 +1,9 @@
+{
+  "presets": [
+    "env",
+    "es2020"
+  ],
+  "plugins": [
+    "transform-object-rest-spread"
+  ]
+}

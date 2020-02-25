@@ -1,4 +1,4 @@
-const Model = require('./Model')
+import Model from './Model'
 
 class Style extends Model {
   static get tableName () {
@@ -22,4 +22,4 @@ class Style extends Model {
   }
 }
 
-module.exports = Style
+export default Style
