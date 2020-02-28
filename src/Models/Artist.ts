@@ -1,15 +1,15 @@
 import Model from './Model'
 
 class Artist extends Model {
-  static get tableName () {
+  static get tableName (): string {
     return 'artists'
   }
 
-  static get idColumn () {
+  static get idColumn (): string {
     return 'discogs_id'
   }
 
-  static get jsonSchema () {
+  static get jsonSchema (): object {
     return {
       type: 'object',
 

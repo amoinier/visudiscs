@@ -1,6 +1,8 @@
 import Knex from 'knex'
 import { Model } from 'objection'
 
-Model.knex(Knex(require('../knexfile').development))
+const knexfile = require('../knexfile')
+
+Model.knex(Knex(knexfile.development))
 
 export default Model

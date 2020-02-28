@@ -6,7 +6,7 @@ exports.up = function (knex) {
     table.integer('label_id').notNullable()
     table.string('title', 255).notNullable()
     table.integer('year')
-    table.time('released_date')
+    table.string('released_date')
     table.json('images')
     table.string('country')
     table.string('notes')

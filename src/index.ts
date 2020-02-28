@@ -9,7 +9,6 @@ import favicon from 'serve-favicon'
 
 import api from './api'
 import response from './utils/response'
-import createDatabase from './utils/createDatabase'
 import typeDefs from './schema'
 import resolvers from './resolvers'
 
@@ -17,13 +16,11 @@ const app = express()
 
 dotenv.config()
 
-createDatabase().catch((e: Error) => {})
-
 app.use(require('body-parser').json({ limit: '1mb' }))
 app.use(cors())
 app.use(favicon(path.join('./', 'public', 'favicon.ico')))
 
-app.use((req: Request, res: Response, next: NextFunction) => {
+app.use((req: Request, res: any, next: NextFunction) => {
   res.resp = res.resp || {}
 
   return next()
@@ -51,11 +48,9 @@ app.use((req: any, res: any, next: any) => {
 app.use((err: any, req: any, res: any) => {
   res.resp = { status: res.resp && res.resp.status ? res.resp.status : 500, message: err || 'error' }
 
-  console.log('1')
-
   return response(req, res)
 })
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, (): void => {
   console.log('listening on 3000')
 })

@@ -1,4 +1,4 @@
-const configKnex = {
+module.exports = {
 
   development: {
     client: 'pg',
@@ -11,5 +11,3 @@ const configKnex = {
   },
   debug: true
 }
-
-export default configKnex

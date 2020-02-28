@@ -1,7 +1,11 @@
-const Router = require('express').Router()
+import { Router as router } from 'express'
 
-const insert = require('./routes/insert')
+import insert from './routes/insert'
+import releases from './routes/releases'
+
+const Router = router()
 
 Router.use('/insert', insert)
+Router.use('/releases', releases)
 
 export default Router
