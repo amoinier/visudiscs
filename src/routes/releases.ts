@@ -12,7 +12,7 @@ const Router = express.Router()
 Router.get('/', async (req: Request, res: any) => {
   const release: Releases[] = await Releases
     .query()
-    .select('title')
+    .select('title', 'images', 'notes')
     .withGraphFetched('artist')
     .modifyGraph('artist', (builder: any) => { builder.select('name') })
     .withGraphJoined('label').modifyGraph('label', (builder: any) => { builder.select('name') })

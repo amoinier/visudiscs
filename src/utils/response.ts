@@ -8,4 +8,10 @@ const response = (req: any, res: any) => {
   })
 }
 
+export interface ResponseResp<ResBody = any> extends Response {
+  resp?: {
+    datas?: any
+  }
+}
+
 export default response

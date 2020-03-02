@@ -35,7 +35,7 @@ class Release extends Model {
 
   static get relationMappings () {
     return {
-      artist: {
+      artists: {
         relation: Model.BelongsToOneRelation,
         modelClass: path.join(__dirname, '/Artist.js'),
         join: {
@@ -66,7 +66,7 @@ class Release extends Model {
         }
       },
 
-      style: {
+      styles: {
         relation: Model.ManyToManyRelation,
         modelClass: path.join(__dirname, '/Style.js'),
         join: {

@@ -8,7 +8,7 @@ import path from 'path'
 import favicon from 'serve-favicon'
 
 import api from './api'
-import response from './utils/response'
+import response, { ResponseResp } from './utils/response'
 import typeDefs from './schema'
 import resolvers from './resolvers'
 
@@ -52,5 +52,5 @@ app.use((err: any, req: any, res: any) => {
 })
 
 app.listen(process.env.PORT, (): void => {
-  console.log('listening on 3000')
+  console.log(`listening on 3000`)
 })

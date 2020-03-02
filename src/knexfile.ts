@@ -6,7 +6,7 @@ module.exports = {
       host: 'localhost',
       user: 'postgres',
       password: 'test',
-      database: 'visudisc'
+      database: 'visudiscs'
     }
   },
   debug: true
