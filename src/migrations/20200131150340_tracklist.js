@@ -1,6 +1,7 @@
 
 exports.up = function (knex) {
   return knex.schema.createTable('tracklists', table => {
+    table.increments('id').primary()
     table.integer('release_id').notNullable()
     table.string('title', 255).notNullable()
     table.string('type', 255)

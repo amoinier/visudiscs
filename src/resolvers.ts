@@ -10,6 +10,7 @@ const resolvers = {
       .withGraphJoined('label')
       .withGraphJoined('genres')
       .withGraphJoined('styles')
+      .withGraphJoined('tracklists')
       .limit(args.limit || 100)
 
       if (args.title) {

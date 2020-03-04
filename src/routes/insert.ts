@@ -20,10 +20,6 @@ Router.post('/add/:user', async (req: Request, res: Response) => {
   const arrayArtist: any[] = []
   const arrayLabel: any[] = []
   const arrayRelease: any[] = []
-  const arrayGenre: any[] = []
-  const arrayGenreRelease: any[] = []
-  const arraystyle: any[] = []
-  const arraystyleRelease: any[] = []
 
   response(req, res)
 
@@ -65,6 +61,13 @@ Router.post('/add/:user', async (req: Request, res: Response) => {
           images: releaseInfo.data.images ? releaseInfo.data.images.map((image: any) => image.uri) : [],
           styles: releaseInfo.data.styles ? releaseInfo.data.styles.map((style: any) => {return {name: style}}) : [],
           genres: releaseInfo.data.genres ? releaseInfo.data.genres.map((genre: any) => {return {name: genre}}) : [],
+          tracklists: releaseInfo.data.tracklist ? releaseInfo.data.tracklist.map((tracklist: any) => {return {
+            release_id: release.id,
+            title: tracklist.title,
+            type: tracklist.type_,
+            position: tracklist.position,
+            duration: tracklist.duration
+          }}) : []
         })
       }
     }

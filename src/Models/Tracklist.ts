@@ -1,3 +1,5 @@
+import path from 'path'
+
 import Model from './Model'
 
 class Tracklist extends Model {
@@ -8,9 +10,9 @@ class Tracklist extends Model {
   static get jsonSchema () {
     return {
       type: 'object',
-      required: ['name'],
 
       properties: {
+        id: { type: 'integer' },
         release_id: { type: 'integer' },
         title: { type: 'string', minLength: 1, maxLength: 255 },
         type: { type: 'string' },
@@ -20,27 +22,18 @@ class Tracklist extends Model {
     }
   }
 
-  // static get relationMappings () {
-  //   return {
-  //     children: {
-  //       relation: Model.HasManyRelation,
-  //       modelClass: User,
-  //       join: {
-  //         from: 'users.id',
-  //         to: 'users.parentId'
-  //       }
-  //     },
-
-  //     parent: {
-  //       relation: Model.BelongsToOneRelation,
-  //       modelClass: User,
-  //       join: {
-  //         from: 'users.parentId',
-  //         to: 'users.id'
-  //       }
-  //     }
-  //   }
-  // }
+  static get relationMappings () {
+    return {
+      release: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: path.join(__dirname, '/Release.js'),
+        join: {
+          to: 'tacklists.release_id',
+          from: 'releases.discogs_id'
+        }
+      },
+    }
+  }
 }
 
 export default Tracklist

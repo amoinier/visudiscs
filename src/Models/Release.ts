@@ -53,6 +53,15 @@ class Release extends Model {
         }
       },
 
+      tracklists: {
+        relation: Model.HasManyRelation,
+        modelClass: path.join(__dirname, '/Tracklist.js'),
+        join: {
+          from: 'releases.discogs_id',
+          to: 'tracklists.release_id'
+        }
+      },
+
       genres: {
         relation: Model.ManyToManyRelation,
         modelClass: path.join(__dirname, '/Genre.js'),

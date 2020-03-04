@@ -17,6 +17,7 @@ type Release {
   country: String
   notes: String
   images: [String]
+  tracklists: [Tracklist]
 }
 
 type Artist {
@@ -33,6 +34,15 @@ type Label {
   name: String
   contact: String
   images: [String]
+}
+
+type Tracklist {
+  id: Int
+  release_id: Int
+  title: String
+  type: String
+  position: String
+  duration: String
 }
 
 type Genre {
