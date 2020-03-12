@@ -7,6 +7,9 @@ module.exports = {
       user: 'postgres',
       password: 'test',
       database: 'visudiscs'
+    },
+    migrations: {
+      directory: '../src/migrations'
     }
   },
   debug: true
