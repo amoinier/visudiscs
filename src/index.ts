@@ -1,4 +1,4 @@
-import express, {NextFunction, Request, Response} from 'express'
+import express, { NextFunction, Request, Response } from 'express'
 import { GraphQLScalarType, defaultFieldResolver } from 'graphql'
 import { ApolloServer, SchemaDirectiveVisitor } from 'apollo-server-express'
 import dotenv from 'dotenv'
@@ -52,5 +52,5 @@ app.use((err: any, req: any, res: any) => {
 })
 
 app.listen(process.env.PORT, (): void => {
-  console.log(`listening on 3000`)
+  console.log('listening on 3000')
 })
