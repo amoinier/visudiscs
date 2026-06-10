@@ -1,8 +1,7 @@
 const fetch = require('isomorphic-unfetch')
 
 module.exports = {
-  target: 'serverless',
-  exportTrailingSlash: true,
+  trailingSlash: true,
   exportPathMap: async function () {
     const paths = {
       '/': { page: '/' },

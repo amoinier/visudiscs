@@ -3249,10 +3249,10 @@ typed-array-length@^1.0.7:
     possible-typed-array-names "^1.1.0"
     reflect.getprototypeof "^1.0.10"
 
-typescript@^3.8.2:
-  version "3.8.2"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-3.8.2.tgz"
-  integrity sha512-EgOVgL/4xfVrCMbhYKUQTdF37SQn4Iw73H5BgCrF1Abdun7Kwy/QZsE/ssAy0y4LxBbvua3PIbFsbRczWWnDdQ==
+typescript@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-6.0.3.tgz"
+  integrity sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==
 
 unbox-primitive@^1.1.0:
   version "1.1.0"
