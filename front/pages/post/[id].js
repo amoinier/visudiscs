@@ -8,8 +8,8 @@ const Post = props => (
     <p>{props.show?.summary?.replace(/<[/]?[pb]>/g, '')}</p>
     {props.show.image ? <img src={props.show.image.medium} /> : null}
     <div className="markdown">
-      <Markdown
-        source={`
+      <Markdown>
+        {`
 This is our blog post.
 Yes. We can have a [link](/link).
 And we can have a title as well.
@@ -18,7 +18,7 @@ And we can have a title as well.
 
 And here's the content.
       `}
-      />
+      </Markdown>
     </div>
     <style jsx global>{`
         .markdown {

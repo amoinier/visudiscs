@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express'
-import { GraphQLScalarType, defaultFieldResolver } from 'graphql'
-import { ApolloServer, SchemaDirectiveVisitor } from 'apollo-server-express'
+import { ApolloServer } from '@apollo/server'
+import { expressMiddleware } from '@as-integrations/express4'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
@@ -26,18 +26,24 @@ app.use((req: Request, res: any, next: NextFunction) => {
   return next()
 })
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: ({ req }) => ({
-    headers: req.headers
-  }),
-  tracing: true
-})
+const start = async () => {
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers
+  })
 
-server.applyMiddleware({ app })
+  await server.start()
 
-app.use('/api', api)
+  app.use(
+    '/graphql',
+    expressMiddleware(server, {
+      context: async ({ req }) => ({
+        headers: req.headers
+      })
+    })
+  )
+
+  app.use('/api', api)
 
 app.use((req: any, res: any, next: any) => {
   res.resp = { status: 404 }
@@ -51,6 +57,12 @@ app.use((err: any, req: any, res: any) => {
   return response(req, res)
 })
 
-app.listen(process.env.PORT, (): void => {
-  console.log('listening on 3000')
+  app.listen(process.env.PORT, (): void => {
+    console.log('listening on 3000')
+  })
+}
+
+start().catch((error: any) => {
+  console.error('Unable to start server', error)
+  process.exit(1)
 })
